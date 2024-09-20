@@ -18,3 +18,6 @@ The Dagger module comes with the following commands:
 - `serve`: Serve the application (for demo purposes)
 - `test`: Run Helm tests in a real Kubernetes cluster
 - `lint`: Run `helm lint` on the chart
+- `release`: Package and release the chart to a Helm repository
+
+The repo also comes with a GitHub Actions workflow that runs the tests on every push and releases the chart on every tag.
