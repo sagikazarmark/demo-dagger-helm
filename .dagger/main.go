@@ -118,7 +118,7 @@ func (m *Demo) Lint(ctx context.Context) (string, error) {
 func (m *Demo) Release(ctx context.Context, version string, githubActor string, githubToken *dagger.Secret) error {
 	_, err := m.Build().
 		WithRegistryAuth("ghcr.io", githubActor, githubToken).
-		Publish(ctx, fmt.Sprintf("ghcr.io/%s/demo-dagger-helm:%s", githubActor))
+		Publish(ctx, fmt.Sprintf("ghcr.io/%s/demo-dagger-helm:%s", githubActor, version))
 	if err != nil {
 		return err
 	}
