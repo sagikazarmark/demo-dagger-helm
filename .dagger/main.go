@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"dagger/demo/internal/dagger"
+	"fmt"
+	"strings"
 	"time"
 )
 
@@ -112,8 +114,31 @@ func (m *Demo) Lint(ctx context.Context) (string, error) {
 	return chart.Lint().Stdout(ctx)
 }
 
+// Package and release the Helm chart (and the application).
+func (m *Demo) Release(ctx context.Context, version string, githubActor string, githubToken *dagger.Secret) error {
+	_, err := m.Build().
+		WithRegistryAuth("ghcr.io", githubActor, githubToken).
+		Publish(ctx, fmt.Sprintf("ghcr.io/%s/demo-dagger-helm:%s", githubActor))
+	if err != nil {
+		return err
+	}
+
+	err = m.chart().
+		Package(dagger.HelmChartPackageOpts{
+			Version:    strings.TrimPrefix(version, "v"),
+			AppVersion: version,
+		}).
+		WithRegistryAuth("ghcr.io", githubActor, githubToken).
+		Publish(ctx, fmt.Sprintf("oci://ghcr.io/%s/helm-charts", githubActor))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Demo) chart() *dagger.HelmChart {
-	chart := m.Source.Directory("deploy/charts/demo")
+	chart := m.Source.Directory("deploy/charts/demo-dagger-helm")
 
 	// Generate the README.md file using helm-docs.
 	// See https://github.com/norwoodj/helm-docs
