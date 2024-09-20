@@ -9,7 +9,7 @@ The example chart for this demo is the default Helm chart created with `helm cre
 The actual command used to generate the chart is:
 
 ```sh
-dagger -m github.com/sagikazarmark/daggerverse/helm@v0.13.0 call create --name demo directory export --path deploy/charts/demo --wipe
+dagger -m github.com/sagikazarmark/daggerverse/helm@v0.13.0 call create --name demo-dagger-helm directory export --path deploy/charts/demo-dagger-helm --wipe
 ```
 
 The Dagger module comes with the following commands:
