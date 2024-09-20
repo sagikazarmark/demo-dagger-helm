@@ -2,52 +2,19 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-**My project description.**
+This project demonstrates how to test and release Helm charts using [Dagger](https://dagger.io/).
 
-## Usage
+The example chart for this demo is the default Helm chart created with `helm create`.
 
-Some usage information.
-
-## Development
-
-**For an optimal developer experience, it is recommended to install [Nix](https://nixos.org/download.html) and [direnv](https://direnv.net/docs/installation.html).**
-
-Instructions for development (if any).
-
-## License
-
-The project is licensed under the [MIT License](LICENSE).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Generated with:
+The actual command used to generate the chart is:
 
 ```sh
 dagger -m github.com/sagikazarmark/daggerverse/helm@v0.13.0 call create --name demo directory export --path deploy/charts/demo --wipe
 ```
+
+The Dagger module comes with the following commands:
+
+- `build`: Build the application (nginx image with a custom `index.html`)
+- `serve`: Serve the application (for demo purposes)
+- `test`: Run Helm tests in a real Kubernetes cluster
+- `lint`: Run `helm lint` on the chart
