@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "demo.fullname" . }}-test-content"
+  labels:
+    {{- include "demo.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: curl
+      image: curlimages/curl
+      command: ['sh']
+      args: ['-c', 'curl {{ include "demo.fullname" . }}:{{ .Values.service.port }} | grep Dagger']
+  restartPolicy: Never

@@ -1,0 +1,24 @@
+{
+  "name": "demo",
+  "sdk": "go",
+  "dependencies": [
+    {
+      "name": "registry",
+      "source": "github.com/sagikazarmark/daggerverse/registry@fb3d654856bd7d53a4129184bf1338e930ac6ca1"
+    },
+    {
+      "name": "helm",
+      "source": "github.com/sagikazarmark/daggerverse/helm@126b5fbbdad70dbf2a8689600baec2eb78c05ef4"
+    },
+    {
+      "name": "helm-docs",
+      "source": "github.com/sagikazarmark/daggerverse/helm-docs@126b5fbbdad70dbf2a8689600baec2eb78c05ef4"
+    },
+    {
+      "name": "k3s",
+      "source": "github.com/marcosnils/daggerverse/k3s@be7d810261b8719da2cb977132aa51bcab094972"
+    }
+  ],
+  "source": ".dagger",
+  "engineVersion": "v0.13.1"
+}
