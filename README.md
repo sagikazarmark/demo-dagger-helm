@@ -1,7 +1,5 @@
 # Demo: Testing and releasing Helm charts with [Dagger](https://dagger.io/)
 
-[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
-
 This project demonstrates how to test and release Helm charts using [Dagger](https://dagger.io/).
 
 The example chart for this demo is the default Helm chart created with `helm create`.
